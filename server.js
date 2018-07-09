@@ -13,10 +13,11 @@ var allowCrossDomain = function(req, res, next) {
   next();
 }
 
+app.use(allowCrossDomain);
+
 initializeDatabases().then(dbs => {
   // Initialize the application once database connections are ready.
   routes(app, dbs).listen(3000, () => console.log('Listening on port 3000'))
-  app.use(allowCrossDomain);
 }).catch(err => {
   console.error('Failed to make all database connections!')
   console.error(err)
