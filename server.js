@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
 const initializeDatabases = require('./dbs')
 const routes = require('./routes')
@@ -24,3 +24,6 @@ initializeDatabases().then(dbs => {
   process.exit(1)
 })
 
+// setting body parser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
